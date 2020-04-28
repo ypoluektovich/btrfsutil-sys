@@ -1,6 +1,6 @@
 [package]
 name = "btrfsutil-sys"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["cezarmathe <me@cezarmathe.com>"]
 edition = "2018"
 description = "Raw bindings to libbtrfsutil"
@@ -9,9 +9,11 @@ readme = "README.md"
 repository = "https://github.com/cezarmathe/btrfsutil-sys"
 license = "MIT"
 build = "build.rs"
-links = "btrfs"
+links = "btrfsutil"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-bindgen = "0.53.2"
+bindgen = "0.53"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.5"
