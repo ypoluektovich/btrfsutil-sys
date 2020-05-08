@@ -51,13 +51,9 @@ fn build() {
         .expect("Couldn't write bindings!");
 }
 
-#[cfg(not(doc))]
 fn main() {
-    build();
-}
-
-#[cfg(doc)]
-fn main() {
-    println!("cargo:rustc-link-lib=btrfsutil");
+    if cfg!(not(docs_rs)) {
+        println!("cargo:rustc-link-lib=btrfsutil");
+    }
     build();
 }
