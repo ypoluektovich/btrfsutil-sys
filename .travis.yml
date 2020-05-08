@@ -1,0 +1,20 @@
+dist: bionic
+language: rust
+rust:
+  - stable
+  - beta
+  - nightly
+jobs:
+  allow_failures:
+    - rust: nightly
+  fast_finish: true
+cache: cargo
+sudo: true
+
+install:
+  - sudo apt update
+  - sudo apt install libbtrfsutil1
+
+script:
+  - cargo build -v
+  - RUSTFLAGS="--cfg docs_rs" cargo doc --no-deps -v
