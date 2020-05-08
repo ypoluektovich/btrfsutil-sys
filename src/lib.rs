@@ -5,3 +5,6 @@
 #![allow(non_snake_case)]
 
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+
+/// Id of the root subvolume in a Btrfs filesystem.
+pub const BTRFS_FS_TREE_OBJECTID: u64 = 5;
