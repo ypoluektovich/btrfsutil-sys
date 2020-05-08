@@ -1,20 +1,30 @@
 dist: bionic
 language: rust
 rust:
-  - stable
-  - beta
-  - nightly
+- stable
+- beta
+- nightly
 jobs:
   allow_failures:
-    - rust: nightly
+  - rust: nightly
   fast_finish: true
 cache: cargo
-sudo: true
+addons:
+  apt:
+    sources:
+    - sourceline: deb http://archive.ubuntu.com/ubuntu eoan main
 
 install:
-  - sudo apt update
-  - sudo apt install libbtrfsutil1
+- sudo apt update
+- sudo apt install libbtrfsutil1
 
 script:
-  - cargo build -v
-  - RUSTFLAGS="--cfg docs_rs" cargo doc --no-deps -v
+- cargo build -v
+- RUSTFLAGS="--cfg docs_rs" cargo doc --no-deps -v
+
+deploy:
+  provider: cargo
+  token:
+    secure: a8j3nSIJTVZOtLy/TDOVAz9lvB5edmAbBHLhcHbf0/Mb+9Z9viGWX3iOlJf7csvNnjqeNVwRog4IJpgC7zZ+o4RCrnvuGZrLelUEQZqp1tNaaL/TlNkUSfRsuPtHSOuFofGgNgX+zub/oxmMExVXmSXQytVQPHOoBUTUvw4aOv6N4h1HIunPZcAaIb/EaKsatAlmsMW2DhcM7MIgsAE/ADlmHDv2c70uTvDjqxvs6ZaB6orM+mAwtAQAHjANWGqjW9E+Mn9BBvCXNCHwVBZVWEbJ0lmJaKrrq8d0M2zelqrz4RGX8Z7XZscUEt1/8wjfXyVctiBEYj7xCICVRbUx1xqWSCVfU1b6spYm7CSon736xqY65uGjHKiYJvtsXrljyOtjPbm8JR4Wl1JjkrOknvuykxDwvP0NXHf9cVknkOW19UW55Uoou7tFhlzSMH2LeX9OJ/+qPi2p43HKA+uHYtR7bZfdih06pChRyVpV+MlZaRtId4Y/w5iIAPWtxo2GGEkXj3vLlzixtrreq6s8xko54tn1Lam1rdAzl7Ue0NP1bvXz5LsTzgsDNQKR47EK373Aw1mOfAbewNGSWszGOkPR7PWLK4azI8nWWnGjWOfn9OJCMeP2saPWFtR1hUnPFIJzeGOdKwaiAF21R8YQtkUtbUzdCsI7SJTwXtAoXW8=
+  on:
+    tags: true
