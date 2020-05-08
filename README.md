@@ -20,7 +20,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-btrfsutil-sys = "1.2.0"
+btrfsutil-sys = "1.2.1"
 ```
 
 For further details, please refer to the [documentation](https://docs.rs/btrfsutil-sys).
